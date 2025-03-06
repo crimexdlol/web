@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Briggy Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 300px;
+            border: 2px solid red;
+            border-radius: 10px;
+            background-color: black;
+            padding: 10px;
+            color: white;
+        }
+        .chat-header {
+            background-color: red;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-box {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #111;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .input-box {
+            display: flex;
+        }
+        input {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .bot-message {
+            color: red;
+            display: flex;
+            align-items: center;
+        }
+        .bot-message img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Chat with Briggy Bot</div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let userInput = document.getElementById("user-input").value;
+            if (userInput.trim() === "") return;
+
+            let chatBox = document.getElementById("chat-box");
+
+            // Add user message
+            let userMessage = document.createElement("div");
+            userMessage.classList.add("message");
+            userMessage.textContent = "You: " + userInput;
+            chatBox.appendChild(userMessage);
+
+            // Bot replies randomly
+            let botReplies = ["Fucking loser cuck", "Pedophile Cuck", "Lame cunt", "Keep Coping Loser", "Im obese"];
+            let botReply = botReplies[Math.floor(Math.random() * botReplies.length)];
+
+            // Bot message with image
+            let botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message");
+
+            let botImage = document.createElement("Image");
+            botImage.src = "samuel briggs.png"; // Make sure bot.png is in the same folder or update the path
+            botImage.alt = "Bot";
+
+            let botText = document.createElement("span");
+            botText.textContent = "Briggy Bot: " + botReply;
+
+            botMessage.appendChild(botImage);
+            botMessage.appendChild(botText);
+
+            setTimeout(() => {
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+
+            document.getElementById("user-input").value = "";
+        }
+    </script>
+</body>
+</html>
